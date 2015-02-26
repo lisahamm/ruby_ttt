@@ -8,13 +8,6 @@ module TicTacToe
       @current_player = player1
     end
 
-    def play
-      while in_progress?
-        take_turn
-        switch_turn
-      end
-    end
-
     def in_progress?
       !winner? && !tie?
     end
