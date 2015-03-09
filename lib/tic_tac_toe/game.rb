@@ -1,10 +1,12 @@
 module TicTacToe
   class Game
     attr_accessor :board
+    attr_reader :player1, :player2, :current_player
 
     def initialize(board, player1_mark, player2_mark)
       @board = board
-      @players = [Player.new(player1_mark), Player.new(player2_mark)]
+      @player1 = Player.new(player1_mark)
+      @player2 = Player.new(player2_mark)
       @current_player = player1
     end
 
@@ -13,7 +15,7 @@ module TicTacToe
     end
 
     def switch_turn
-      self.current_player = current_player == players[0] ? players[1] : players[0]
+      self.current_player = current_player == player1 ? player2 : player1
     end
 
     def in_progress?
@@ -25,10 +27,10 @@ module TicTacToe
     end
 
     def get_winning_player
-      if board.get_winning_mark == players[0].mark
-        players[0]
-      elsif board.get_winning_mark == players[1].mark
-        players[1]
+      if board.get_winning_mark == player1.mark
+        player1
+      elsif board.get_winning_mark == player2.mark
+        player2
       else
         nil
       end
@@ -37,8 +39,5 @@ module TicTacToe
     def tie?
       board.tie_game?
     end
-
-    private
-    attr_accessor :players, :current_player
   end
 end

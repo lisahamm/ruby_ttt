@@ -2,17 +2,14 @@ require "spec_helper"
 
 module TicTacToe
   describe Game do
-    let(:player1) {Player.new('X')}
-    let(:player2) {Player.new('O')}
-
-    let(:game) {Game.new(Board.new, player1, player2)}
+    let(:game) {Game.new(Board.new, 'X', 'O')}
 
     let(:game_in_play) do
       cells = ['O', 'O', nil,
                nil, 'X', nil,
                nil, nil, nil]
       board = Board.new(cells: cells)
-      Game.new(board, player1, player2)
+      Game.new(board, 'X', 'O')
     end
 
     let(:won_game) do
@@ -20,7 +17,7 @@ module TicTacToe
                'O', 'X', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new(board, player1, player2)
+      Game.new(board, 'X', 'O')
     end
 
     let(:tie_game) do
@@ -28,7 +25,7 @@ module TicTacToe
                'O', 'O', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new(board, player1, player2)
+      Game.new(board, 'X', 'O')
     end
 
     describe "#in_progress?" do
@@ -61,7 +58,7 @@ module TicTacToe
 
     describe "#get_winning_player" do
       it "is winner's mark when won" do
-        expect(won_game.get_winning_player).to eq player1
+        expect(won_game.get_winning_player.mark).to eq 'X'
       end
 
       it "is nil when tied" do
