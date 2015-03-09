@@ -28,6 +28,20 @@ module TicTacToe
       Game.new(board, 'X', 'O')
     end
 
+    describe "#take_turn" do
+      it "adds the current player's mark to specified cell" do
+        game.take_turn(0)
+        expect(game.board.get_cell(0)).to eq game.current_player.mark
+      end
+    end
+
+    describe "#switch_turn" do
+      it "changes the current player from player1 to player2" do
+        game.switch_turn
+        expect(game.current_player).to eq game.player2
+      end
+    end
+
     describe "#in_progress?" do
       it "is true when in play" do
         expect(game_in_play.in_progress?).to eq true
