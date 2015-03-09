@@ -2,9 +2,9 @@ module TicTacToe
   class Game
     attr_accessor :board
 
-    def initialize(board, player1, player2)
+    def initialize(board, player1_mark, player2_mark)
       @board = board
-      @players = [player1, player2]
+      @players = [Player.new(player1_mark), Player.new(player2_mark)]
       @current_player = player1
     end
 
