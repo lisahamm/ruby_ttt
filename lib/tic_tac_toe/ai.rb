@@ -1,13 +1,17 @@
 module TicTacToe
-  class ComputerPlayer < Player
-    def take_turn(board)
-      cell =
-        if board.empty?
-          (0..8).to_a.sample
-        else
-          minimax(board, mark)
-        end
-      board.set_cell(cell, mark)
+  class AI
+    attr_reader :mark
+
+    def initialize(mark)
+      @mark = mark
+    end
+
+    def get_move(board)
+      if board.empty?
+        (0..8).to_a.sample
+      else
+        minimax(board, mark)
+      end
     end
 
     private

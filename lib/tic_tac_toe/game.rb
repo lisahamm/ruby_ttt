@@ -8,6 +8,14 @@ module TicTacToe
       @current_player = player1
     end
 
+    def take_turn(cell_number)
+      board.set_cell(cell_number, current_player.mark)
+    end
+
+    def switch_turn
+      self.current_player = current_player == players[0] ? players[1] : players[0]
+    end
+
     def in_progress?
       !winner? && !tie?
     end
@@ -31,15 +39,6 @@ module TicTacToe
     end
 
     private
-
     attr_accessor :players, :current_player
-
-    def take_turn
-      current_player.take_turn(board)
-    end
-
-    def switch_turn
-      self.current_player = current_player == players[0] ? players[1] : players[0]
-    end
   end
 end
