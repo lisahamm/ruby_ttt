@@ -1,10 +1,9 @@
 module TicTacToe
   class Player
-    attr_reader :mark, :ai
+    attr_reader :mark
 
-    def initialize(mark, ai)
+    def initialize(mark)
       @mark = mark
-      @ai = ai
     end
 
     def to_s

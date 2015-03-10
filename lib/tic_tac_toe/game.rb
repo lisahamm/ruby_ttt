@@ -1,23 +1,35 @@
 module TicTacToe
   class Game
     attr_accessor :board, :current_player
-    attr_reader :player1, :player2
+    attr_reader :player1, :player2, :take_first_turn
 
-    def initialize(board, player_settings)
-      @board = board
+    def initialize(board=nil, player_settings)
+      @board = board ||= Board.new
       @player1 = set_player(0, player_settings)
       @player2 = set_player(1, player_settings)
       @current_player = player1
+      check_first_move
     end
 
     def set_player(index, player_settings)
       mark = player_settings[index].fetch(:mark)
-      ai = player_settings[index].fetch(:ai)
-      Player.new(mark, ai)
+      Player.new(mark)
+    end
+
+    def check_first_move
+      if player1.ai == true
+        take_turn(generate_ai_move)
+        switch_turn
+      end
     end
 
     def take_turn(cell_number)
+      cell_number = cell_number ||= generate_ai_move(board)
       board.set_cell(cell_number, current_player.mark)
+    end
+
+    def generate_ai_move
+      TicTacToe::AI.new(current_player).get_move(board)
     end
 
     def switch_turn
