@@ -8,6 +8,7 @@ module TicTacToe
       @player1 = set_player(0, player_settings)
       @player2 = set_player(1, player_settings)
       @current_player = player1
+      check_first_move(player_settings[0].fetch(:ai))
     end
 
     def set_player(index, player_settings)
@@ -15,8 +16,14 @@ module TicTacToe
       Player.new(mark)
     end
 
+    def check_first_move(player_settings)
+      if player_settings[0].fetch(:ai) == true
+        take_turn
+        switch_turn
+      end
+    end
 
-    def take_turn(cell_number)
+    def take_turn(cell_number=nil)
       cell_number = cell_number ||= generate_ai_move(board)
       board.set_cell(cell_number, current_player.mark)
     end
