@@ -3,7 +3,7 @@ module TicTacToe
     attr_accessor :board, :current_player
     attr_reader :player1, :player2, :take_first_turn
 
-    def initialize(board=nil, player_settings)
+    def initialize(player_settings, board=nil)
       @board = board ||= Board.new
       @player1 = set_player(0, player_settings)
       @player2 = set_player(1, player_settings)
