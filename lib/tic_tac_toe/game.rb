@@ -8,7 +8,7 @@ module TicTacToe
       @player1 = set_player(0, player_settings)
       @player2 = set_player(1, player_settings)
       @current_player = player1
-      check_first_move(player_settings[0].fetch(:ai))
+      check_first_move(player_settings)
     end
 
     def set_player(index, player_settings)
