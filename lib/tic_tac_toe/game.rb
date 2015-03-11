@@ -3,10 +3,10 @@ module TicTacToe
     attr_accessor :board, :current_player_mark
     attr_reader :player1, :player2
 
-    def initialize(board=nil, player_settings, current_player_mark)
+    def initialize(board=nil, player1_mark, player2_mark, current_player_mark)
       @board = board ||= Board.new
-      @player1 = Player.new(player_settings[0])
-      @player2 = Player.new(player_settings[1])
+      @player1 = player1_mark
+      @player2 = player2_mark
       @current_player_mark = current_player_mark
     end
 
@@ -16,6 +16,7 @@ module TicTacToe
 
     def take_turn(cell_number)
       board.set_cell(cell_number, current_player_mark)
+      switch_turn
     end
 
     def generate_ai_move
@@ -35,9 +36,9 @@ module TicTacToe
     end
 
     def get_winning_player
-      if board.get_winning_mark == player1.mark
+      if board.get_winning_mark == player1
         player1
-      elsif board.get_winning_mark == player2.mark
+      elsif board.get_winning_mark == player2
         player2
       else
         nil
