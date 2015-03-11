@@ -15,6 +15,10 @@ module TicTacToe
       Player.new(mark)
     end
 
+    def board_to_array
+      board.to_array
+    end
+
     def take_turn(cell_number)
       board.set_cell(cell_number, current_player.mark)
     end
@@ -48,5 +52,13 @@ module TicTacToe
     def tie?
       board.tie_game?
     end
+
+    private
+
+    def set_player(index, player_settings)
+      mark = player_settings[index].fetch(:mark)
+      Player.new(mark)
+    end
+
   end
 end

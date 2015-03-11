@@ -37,11 +37,6 @@ module TicTacToe
         game.take_turn(0)
         expect(game.board.get_cell(0)).to eq game.current_player.mark
       end
-
-      it "adds an ai move to the board when computer opponent is the first player" do
-        game2 = Game.new(player_settings2)
-        expect(game2.board.empty?).to eq false
-      end
     end
 
     describe "#switch_turn" do
