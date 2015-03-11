@@ -32,6 +32,8 @@ module TicTacToe
       Game.new(board, player_settings3, 'X')
     end
 
+
+
     describe "#take_turn" do
       it "adds the current player's mark to specified cell" do
         game.take_turn(0)
