@@ -2,15 +2,14 @@ require "spec_helper"
 
 module TicTacToe
   describe Game do
-    let(:player_settings) {['X', 'O']}
-    let(:game) {Game.new(player_settings, player_settings[0])}
+    let(:game) {Game.new('X', 'O', 'X')}
 
     let(:game_in_play) do
       cells = ['O', 'O', nil,
                nil, 'X', nil,
                nil, nil, nil]
       board = Board.new(cells: cells)
-      Game.new(board, player_settings, 'X')
+      Game.new(board, 'X', 'O', 'X')
     end
 
     let(:won_game) do
@@ -18,7 +17,7 @@ module TicTacToe
                'O', 'X', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new(board, player_settings, 'X')
+      Game.new(board, 'X', 'O', 'X')
     end
 
     let(:tie_game) do
@@ -26,13 +25,14 @@ module TicTacToe
                'O', 'O', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new(board, player_settings, 'X')
+      Game.new(board, 'X', 'O', 'X')
     end
 
     describe "#take_turn" do
       it "adds the current player's mark to specified cell" do
+        player_mark = game.current_player_mark
         game.take_turn(0)
-        expect(game.board.get_cell(0)).to eq game.current_player_mark
+        expect(game.board.get_cell(0)).to eq player_mark
       end
     end
 
@@ -73,7 +73,7 @@ module TicTacToe
 
     describe "#get_winning_player" do
       it "is winner's mark when won" do
-        expect(won_game.get_winning_player.mark).to eq 'X'
+        expect(won_game.get_winning_player).to eq 'X'
       end
 
       it "is nil when tied" do
