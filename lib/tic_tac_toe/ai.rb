@@ -2,8 +2,8 @@ module TicTacToe
   class AI
     attr_reader :mark
 
-    def initialize(player)
-      @mark = player.mark
+    def initialize(mark)
+      @mark = mark
     end
 
     def get_move(board)

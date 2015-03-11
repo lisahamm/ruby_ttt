@@ -24,7 +24,7 @@ module TicTacToe
     end
 
     def generate_ai_move
-      TicTacToe::AI.new(current_player).get_move(board)
+      TicTacToe::AI.new(current_player_mark).get_move(board)
     end
 
     def switch_turn
