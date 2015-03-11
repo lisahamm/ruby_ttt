@@ -2,18 +2,15 @@ require "spec_helper"
 
 module TicTacToe
   describe Game do
-    let(:player_settings1) {[{mark: 'X', ai: false}, {mark: 'O', ai: true}]}
-    let(:player_settings2) {[{mark: 'X', ai: true}, {mark: 'O', ai: false}]}
-    let(:player_settings3) {[{mark: 'X', ai: false}, {mark: 'O', ai: false}]}
-    let(:game) {Game.new(player_settings1, 'X')}
-
+    let(:player_settings) {['X', 'O']}
+    let(:game) {Game.new(player_settings, player_settings[0])}
 
     let(:game_in_play) do
       cells = ['O', 'O', nil,
                nil, 'X', nil,
                nil, nil, nil]
       board = Board.new(cells: cells)
-      Game.new(board, player_settings3, 'X')
+      Game.new(board, player_settings, 'X')
     end
 
     let(:won_game) do
@@ -21,7 +18,7 @@ module TicTacToe
                'O', 'X', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new(board, player_settings3, 'X')
+      Game.new(board, player_settings, 'X')
     end
 
     let(:tie_game) do
@@ -29,7 +26,7 @@ module TicTacToe
                'O', 'O', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new(board, player_settings3, 'X')
+      Game.new(board, player_settings, 'X')
     end
 
     describe "#take_turn" do

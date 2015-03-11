@@ -5,14 +5,9 @@ module TicTacToe
 
     def initialize(board=nil, player_settings, current_player_mark)
       @board = board ||= Board.new
-      @player1 = set_player(0, player_settings)
-      @player2 = set_player(1, player_settings)
+      @player1 = Player.new(player_settings[0])
+      @player2 = Player.new(player_settings[1])
       @current_player_mark = current_player_mark
-    end
-
-    def set_player(index, player_settings)
-      mark = player_settings[index][:mark]
-      Player.new(mark)
     end
 
     def board_to_array
@@ -52,6 +47,5 @@ module TicTacToe
     def tie?
       board.tie_game?
     end
-
   end
 end
