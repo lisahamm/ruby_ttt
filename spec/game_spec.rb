@@ -9,7 +9,7 @@ module TicTacToe
                nil, 'X', nil,
                nil, nil, nil]
       board = Board.new(cells: cells)
-      Game.new(board, 'X', 'O', 'X')
+      Game.new('X', 'O', 'X', board)
     end
 
     let(:won_game) do
@@ -17,7 +17,7 @@ module TicTacToe
                'O', 'X', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new(board, 'X', 'O', 'X')
+      Game.new('X', 'O', 'X', board)
     end
 
     let(:tie_game) do
@@ -25,7 +25,7 @@ module TicTacToe
                'O', 'O', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new(board, 'X', 'O', 'X')
+      Game.new('X', 'O', 'X', board)
     end
 
     describe "#take_turn" do

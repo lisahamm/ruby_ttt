@@ -3,8 +3,8 @@ module TicTacToe
     attr_accessor :board, :current_player_mark
     attr_reader :player1, :player2
 
-    def initialize(board=nil, player1_mark, player2_mark, current_player_mark)
-      @board = board ||= Board.new
+    def initialize(player1_mark, player2_mark, current_player_mark, cells=nil)
+      @board = Board.new(cells)
       @player1 = player1_mark
       @player2 = player2_mark
       @current_player_mark = current_player_mark
