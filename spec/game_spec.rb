@@ -5,7 +5,7 @@ module TicTacToe
     let(:player_settings1) {[{mark: 'X', ai: false}, {mark: 'O', ai: true}]}
     let(:player_settings2) {[{mark: 'X', ai: true}, {mark: 'O', ai: false}]}
     let(:player_settings3) {[{mark: 'X', ai: false}, {mark: 'O', ai: false}]}
-    let(:game) {Game.new(player_settings1)}
+    let(:game) {Game.new(player_settings1, 'X')}
 
 
     let(:game_in_play) do
@@ -13,7 +13,7 @@ module TicTacToe
                nil, 'X', nil,
                nil, nil, nil]
       board = Board.new(cells: cells)
-      Game.new(board, player_settings3)
+      Game.new(board, player_settings3, 'X')
     end
 
     let(:won_game) do
@@ -21,7 +21,7 @@ module TicTacToe
                'O', 'X', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new(board, player_settings3)
+      Game.new(board, player_settings3, 'X')
     end
 
     let(:tie_game) do
@@ -29,20 +29,20 @@ module TicTacToe
                'O', 'O', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new(board, player_settings3)
+      Game.new(board, player_settings3, 'X')
     end
 
     describe "#take_turn" do
       it "adds the current player's mark to specified cell" do
         game.take_turn(0)
-        expect(game.board.get_cell(0)).to eq game.current_player.mark
+        expect(game.board.get_cell(0)).to eq game.current_player_mark
       end
     end
 
     describe "#switch_turn" do
-      it "changes the current player from player1 to player2" do
+      it "changes the current player mark from 'X' to 'O'" do
         game.switch_turn
-        expect(game.current_player).to eq game.player2
+        expect(game.current_player_mark).to eq 'O'
       end
     end
 

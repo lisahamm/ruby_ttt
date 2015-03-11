@@ -1,13 +1,13 @@
 module TicTacToe
   class Game
-    attr_accessor :board, :current_player
+    attr_accessor :board, :current_player_mark
     attr_reader :player1, :player2
 
-    def initialize(board=nil, player_settings)
+    def initialize(board=nil, player_settings, current_player_mark)
       @board = board ||= Board.new
       @player1 = set_player(0, player_settings)
       @player2 = set_player(1, player_settings)
-      @current_player = player1
+      @current_player_mark = current_player_mark
     end
 
     def set_player(index, player_settings)
@@ -20,7 +20,7 @@ module TicTacToe
     end
 
     def take_turn(cell_number)
-      board.set_cell(cell_number, current_player.mark)
+      board.set_cell(cell_number, current_player_mark)
     end
 
     def generate_ai_move
@@ -28,7 +28,7 @@ module TicTacToe
     end
 
     def switch_turn
-      self.current_player = current_player == player1 ? player2 : player1
+      self.current_player_mark = current_player_mark == 'X' ? 'O' : 'X'
     end
 
     def in_progress?
