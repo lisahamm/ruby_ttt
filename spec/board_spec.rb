@@ -110,5 +110,19 @@ module TicTacToe
         expect(board.over?).to eq false
       end
     end
+
+    describe "#each_row" do
+      it "yields the cells in each row" do
+        rows = []
+        board.each_row { |group| rows << group }
+        expect(rows.length).to eq 3
+      end
+    end
+
+    describe "#to_array" do
+      it "creates an array containing the board's cell symbols" do
+        expect(board.to_array).to eq [nil, nil, nil, nil, nil, nil, nil, nil, nil]
+      end
+    end
   end
 end
