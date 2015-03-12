@@ -68,6 +68,10 @@ module TicTacToe
       cells.map(&:symbol)
     end
 
+    def self.from_array(array)
+      Board.new(cells: array)
+    end
+
     private
 
     attr_accessor :board, :winning_solutions

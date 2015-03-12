@@ -124,5 +124,13 @@ module TicTacToe
         expect(board.to_array).to eq [nil, nil, nil, nil, nil, nil, nil, nil, nil]
       end
     end
+
+    describe "#from_array" do
+      it "creates an instance of itself from an array of cell values" do
+        cell_values = ['X', nil, nil, nil, nil, nil, nil, nil, nil]
+        board = Board.from_array(cell_values)
+        expect(board.get_cell(0)).to eq 'X'
+      end
+    end
   end
 end
