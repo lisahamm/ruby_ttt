@@ -31,6 +31,10 @@ module TicTacToe
       !winner? && !tie?
     end
 
+    def over?
+      board.over?
+    end
+
     def winner?
       board.winner?
     end

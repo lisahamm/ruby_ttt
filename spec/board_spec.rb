@@ -23,6 +23,12 @@ module TicTacToe
         board.set_cell(1, 'X')
         expect(board.get_cell(1)).to eq 'X'
       end
+
+      it "can remove a cell value" do
+        board.set_cell(1, 'X')
+        board.remove_mark(1)
+        expect(board.get_cell(1)).to eq nil
+      end
     end
 
     describe "#empty_cell?" do

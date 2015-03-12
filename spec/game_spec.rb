@@ -57,6 +57,20 @@ module TicTacToe
       end
     end
 
+    describe "#over?" do
+      it "is false when in play" do
+        expect(game_in_play.over?).to eq false
+      end
+
+      it "is true when won" do
+        expect(won_game.over?).to eq true
+      end
+
+      it "is true when tied" do
+        expect(tie_game.over?).to eq true
+      end
+    end
+
     describe "#winner?" do
       it "is false when in play" do
         expect(game_in_play.winner?).to eq false
