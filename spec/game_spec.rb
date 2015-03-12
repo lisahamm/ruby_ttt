@@ -28,11 +28,26 @@ module TicTacToe
       Game.new('X', 'O', 'X', board)
     end
 
+    describe "board_to_array" do
+      it "creates an array of the board's cell symbols" do
+        cell_values = game_in_play.board_to_array
+        expect(cell_values.length).to eq 9
+        expect(cell_values.first).to eq 'O'
+      end
+    end
+
     describe "#take_turn" do
       it "adds the current player's mark to specified cell" do
         player_mark = game.current_player_mark
         game.take_turn(0)
         expect(game.board.get_cell(0)).to eq player_mark
+      end
+    end
+
+    describe "#generate_ai_move" do
+      it "supplies a valid cell number" do
+        move = game.generate_ai_move
+        expect(move >= 0 && move <= 8).to eq true
       end
     end
 
