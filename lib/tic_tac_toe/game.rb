@@ -15,8 +15,13 @@ module TicTacToe
     end
 
     def take_turn(cell_number)
-      board.set_cell(cell_number, current_player_mark)
-      switch_turn
+      if valid_move?(cell_number)
+        board.set_cell(cell_number, current_player_mark)
+        switch_turn
+        true
+      else
+        false
+      end
     end
 
     def generate_ai_move
@@ -52,5 +57,12 @@ module TicTacToe
     def tie?
       board.tie_game?
     end
+
+    private
+
+    def valid_move?(cell_number)
+      cell_number >= 0 && cell_number < BOARD_SIZE ** 2
+    end
+
   end
 end

@@ -37,10 +37,22 @@ module TicTacToe
     end
 
     describe "#take_turn" do
-      it "adds the current player's mark to specified cell" do
-        player_mark = game.current_player_mark
-        game.take_turn(0)
-        expect(game.board.get_cell(0)).to eq player_mark
+      context "cell number is valid" do
+        it "adds the current player's mark to specified cell" do
+          player_mark = game.current_player_mark
+          game.take_turn(0)
+          expect(game.board.get_cell(0)).to eq player_mark
+        end
+
+        it "returns true" do
+          expect(game.take_turn(0)).to eq true
+        end
+      end
+
+      context "cell number is invalid" do
+        it "returns false" do
+          expect(game.take_turn(9)).to eq false
+        end
       end
     end
 
