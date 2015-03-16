@@ -61,7 +61,11 @@ module TicTacToe
     private
 
     def valid_move?(cell_number)
-      cell_number >= 0 && cell_number < BOARD_SIZE ** 2
+      valid_cell_range.include?(cell_number) && board.empty_cell?(cell_number)
+    end
+
+    def valid_cell_range
+      0...(BOARD_SIZE ** 2)
     end
 
   end

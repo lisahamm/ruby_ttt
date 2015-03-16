@@ -37,7 +37,7 @@ module TicTacToe
     end
 
     describe "#take_turn" do
-      context "cell number is valid" do
+      context "when cell number is valid" do
         it "adds the current player's mark to specified cell" do
           player_mark = game.current_player_mark
           game.take_turn(0)
@@ -49,9 +49,13 @@ module TicTacToe
         end
       end
 
-      context "cell number is invalid" do
-        it "returns false" do
+      context "when cell number is invalid" do
+        it "is false if cell number is out of range" do
           expect(game.take_turn(9)).to eq false
+        end
+
+        it "is false if the cell has already been marked" do
+          expect(game_in_play.take_turn(0)).to eq false
         end
       end
     end
