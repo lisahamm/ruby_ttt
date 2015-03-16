@@ -28,7 +28,7 @@ module TicTacToe
       Game.new('X', 'O', 'X', board)
     end
 
-    describe "board_to_array" do
+    describe "#board_to_array" do
       it "creates an array of the board's cell symbols" do
         cell_values = game_in_play.board_to_array
         expect(cell_values.length).to eq 9
