@@ -1,13 +1,14 @@
 module TicTacToe
   class Game
     attr_accessor :board, :current_player_mark
-    attr_reader :player1, :player2
+    attr_reader :player1, :player2, :ai_player_mark
 
     def initialize(options)
       options = defaults.merge(options)
       @board = options[:board]
       @player1 = options[:player1_mark]
       @player2 = options[:player2_mark]
+      @ai_player_mark = options[:ai_player_mark]
       @current_player_mark = options[:current_player_mark]
     end
 
