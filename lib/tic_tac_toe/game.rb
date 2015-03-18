@@ -1,14 +1,14 @@
 module TicTacToe
   class Game
     attr_accessor :board, :current_player_mark
-    attr_reader :player1, :player2, :ai_player_mark
+    attr_reader :player1, :player2, :computer_opponent_mark
 
     def initialize(options)
       options = defaults.merge(options)
       @board = options[:board]
       @player1 = options[:player1_mark]
       @player2 = options[:player2_mark]
-      @ai_player_mark = options[:ai_player_mark]
+      @computer_opponent_mark = options[:computer_opponent_mark]
       @current_player_mark = options[:current_player_mark]
     end
 
@@ -18,12 +18,16 @@ module TicTacToe
 
     def take_turn(cell_number)
       if valid_move?(cell_number)
-        board.set_cell(cell_number, current_player_mark)
-        switch_turn
+        complete_turn(cell_number)
         true
       else
         false
       end
+    end
+
+    def complete_turn(cell_number)
+      board.set_cell(cell_number, current_player_mark)
+      switch_turn
     end
 
     def generate_ai_move
