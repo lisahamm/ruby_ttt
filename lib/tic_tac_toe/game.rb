@@ -3,11 +3,12 @@ module TicTacToe
     attr_accessor :board, :current_player_mark
     attr_reader :player1, :player2
 
-    def initialize(player1_mark, player2_mark, current_player_mark, board=nil)
-      @board = board ||= Board.new
-      @player1 = player1_mark
-      @player2 = player2_mark
-      @current_player_mark = current_player_mark
+    def initialize(options)
+      options = defaults.merge(options)
+      @board = options[:board]
+      @player1 = options[:player1_mark]
+      @player2 = options[:player2_mark]
+      @current_player_mark = options[:current_player_mark]
     end
 
     def board_to_array
@@ -59,6 +60,10 @@ module TicTacToe
     end
 
     private
+
+    def defaults
+      {board: Board.new, player1_mark: 'X', player2_mark: 'O', current_player_mark: 'X'}
+    end
 
     def valid_move?(cell_number)
       valid_cell_range.include?(cell_number) && board.empty_cell?(cell_number)
