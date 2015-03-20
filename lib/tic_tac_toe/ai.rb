@@ -1,6 +1,5 @@
 module TicTacToe
   class AI
-    attr_reader :mark
 
     def initialize(mark)
       @mark = mark
@@ -15,6 +14,7 @@ module TicTacToe
     end
 
     private
+    attr_reader :mark
 
     def opponent(player)
       player == 'X' ? 'O' : 'X'
