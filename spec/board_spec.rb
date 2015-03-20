@@ -20,6 +20,7 @@ module TicTacToe
 
     describe "cell accessors" do
       it "can set and get a cell value" do
+        expect(board.get_cell(1)).to be_nil
         board.set_cell(1, 'X')
         expect(board.get_cell(1)).to eq 'X'
       end
