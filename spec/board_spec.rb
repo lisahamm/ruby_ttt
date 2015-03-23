@@ -32,6 +32,16 @@ module TicTacToe
       end
     end
 
+    describe "valid_cell_number?" do
+      it "is true when cell number is within the board's cell range" do
+        expect(board.valid_cell_number?(0)).to eq true
+      end
+
+      it "is false when cell number is outside the board's cell range" do
+        expect(board.valid_cell_number?(9)).to eq false
+      end
+    end
+
     describe "#empty_cell?" do
       it "is true when cell is empty" do
         expect(board.empty_cell?(1)).to eq true
