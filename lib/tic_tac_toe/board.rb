@@ -1,8 +1,9 @@
 module TicTacToe
-  BOARD_SIZE = 3
 
   class Board
     attr_accessor :cells, :size
+
+    BOARD_SIZE = 3
 
     def initialize(options={})
       options = defaults.merge(options)
@@ -20,6 +21,10 @@ module TicTacToe
 
     def remove_mark(cell_number)
       cells[cell_number].symbol = nil
+    end
+
+    def valid_cell_number?(cell_number)
+      (0..(size ** 2 - 1)).include?(cell_number)
     end
 
     def empty_cell?(cell_number)
