@@ -64,6 +64,5 @@ module TicTacToe
     def valid_cell_number?(cell_number)
       board.valid_cell_number?(cell_number)
     end
-
   end
 end
