@@ -1,12 +1,15 @@
+require_relative 'rules'
+
 module TicTacToe
   class Game
-    attr_reader :player1, :player2, :current_player_mark, :board
+    attr_reader :player1, :player2, :current_player_mark, :board, :rules
 
-    def initialize(player1, player2, current_player_mark, board=nil)
+    def initialize(player1, player2, current_player_mark, rules, board=nil)
       @board = board ||= Board.new
       @player1 = player1
       @player2 = player2
       @current_player_mark = current_player_mark
+      @rules = rules
     end
 
     def player1_mark
@@ -21,8 +24,12 @@ module TicTacToe
       board.to_array
     end
 
+    def current_player
+      current_player_mark == player1_mark ? player1 : player2
+    end
+
     def take_turn(cell_number)
-      if valid_move?(cell_number)
+      if valid_move?(board, cell_number)
         board.set_cell(cell_number, current_player_mark)
         switch_turn
         true
@@ -65,12 +72,8 @@ module TicTacToe
 
     private
 
-    def valid_move?(cell_number)
-      valid_cell_number?(cell_number) && board.empty_cell?(cell_number)
-    end
-
-    def valid_cell_number?(cell_number)
-      board.valid_cell_number?(cell_number)
+    def valid_move?(board, cell_number)
+      rules.valid_cell_number?(cell_number) && board.empty_cell?(cell_number)
     end
   end
 end

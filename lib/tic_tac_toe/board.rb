@@ -23,10 +23,6 @@ module TicTacToe
       cells[cell_number].symbol = nil
     end
 
-    def valid_cell_number?(cell_number)
-      (0..(size ** 2 - 1)).include?(cell_number)
-    end
-
     def empty_cell?(cell_number)
       cells[cell_number].symbol == nil
     end
@@ -37,32 +33,8 @@ module TicTacToe
       available_cells
     end
 
-    def get_winning_mark
-      winning_solutions.each do |solution|
-        cell1 = cells[solution[0]].symbol
-        cell2 = cells[solution[1]].symbol
-        cell3 = cells[solution[2]].symbol
-        if cell1 == cell2 && cell1 == cell3 && cell1 != nil
-          return cell1
-        end
-      end
-      nil
-    end
-
-    def winner?
-      get_winning_mark != nil
-    end
-
-    def tie_game?
-      full? && !winner?
-    end
-
     def empty?
       cells.all? {|cell| cell.symbol.nil?}
-    end
-
-    def over?
-      winner? || tie_game?
     end
 
     def each_row
@@ -87,22 +59,6 @@ module TicTacToe
 
     def cellify(data)
       data.each_with_index.map {|symbol, index| Cell.new(symbol, index)}
-    end
-
-    def winning_solutions
-      [[0, 1, 2],
-       [3, 4, 5],
-       [6, 7, 8],
-       [0, 3, 6],
-       [1, 4, 7],
-       [2, 5, 8],
-       [0, 4, 8],
-       [2, 4, 6]
-      ]
-    end
-
-    def full?
-      cells.none? {|cell| cell.symbol.nil?}
     end
   end
 end
