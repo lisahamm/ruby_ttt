@@ -2,30 +2,42 @@ require "spec_helper"
 
 module TicTacToe
   describe Game do
-    let(:game) {Game.new(Player.new('X'), Player.new('O'), 'X')}
+    let(:game) {Game.new({player1: Player.new('X'),
+                          player2: Player.new('O'),
+                          current_player_mark: 'X',
+                          ai_mark: nil})}
 
     let(:game_in_play) do
       cells = ['O', 'O', nil,
                nil, 'X', nil,
                nil, nil, nil]
-      board = Board.new(cells: cells)
-      Game.new(Player.new('X'), Player.new('O'), 'X', board)
+      Game.new({player1: Player.new('X'),
+                player2: Player.new('O'),
+                current_player_mark: 'X',
+                ai_mark: nil,
+                board: Board.new(cells: cells)})
     end
 
     let(:won_game) do
       cells = ['X', 'X', 'O',
                'O', 'X', 'X',
                'X', 'O', 'X']
-      board = Board.new(cells: cells)
-      Game.new(Player.new('X'), Player.new('O'), 'X', board)
+      Game.new({player1: Player.new('X'),
+                player2: Player.new('O'),
+                current_player_mark: 'X',
+                ai_mark: nil,
+                board: Board.new(cells: cells)})
     end
 
     let(:tie_game) do
       cells = ['X', 'X', 'O',
                'O', 'O', 'X',
                'X', 'O', 'X']
-      board = Board.new(cells: cells)
-      Game.new(Player.new('X'), Player.new('O'), 'X', board)
+      Game.new({player1: Player.new('X'),
+                player2: Player.new('O'),
+                current_player_mark: 'X',
+                ai_mark: nil,
+                board: Board.new(cells: cells)})
     end
 
     describe "#board_to_array" do

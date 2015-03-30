@@ -1,15 +1,14 @@
-require_relative 'rules'
-
 module TicTacToe
   class Game
     attr_reader :player1, :player2, :current_player_mark, :board, :rules
 
-    def initialize(player1, player2, current_player_mark, rules, board=nil)
+    def initialize(player1:, player2:, current_player_mark:, ai_mark:, board: nil)
       @board = board ||= Board.new
       @player1 = player1
       @player2 = player2
       @current_player_mark = current_player_mark
-      @rules = rules
+      @ai_mark = ai_mark
+      @rules = Rules.new(board)
     end
 
     def player1_mark
@@ -29,7 +28,7 @@ module TicTacToe
     end
 
     def take_turn(cell_number)
-      if valid_move?(board, cell_number)
+      if valid_move?(cell_number)
         board.set_cell(cell_number, current_player_mark)
         switch_turn
         true
@@ -39,7 +38,7 @@ module TicTacToe
     end
 
     def generate_ai_move
-      TicTacToe::AI.new(current_player_mark).get_move(board)
+      TicTacToe::AI.new(current_player_mark).get_move(board, rules)
     end
 
     def switch_turn
@@ -51,28 +50,28 @@ module TicTacToe
     end
 
     def over?
-      board.over?
+      rules.over?
     end
 
     def winner?
-      board.winner?
+      rules.winner?
     end
 
     def get_winning_player
-      if board.get_winning_mark == player1.mark
+      if rules.get_winning_mark == player1.mark
         player1.mark
-      elsif board.get_winning_mark == player2.mark
+      elsif rules.get_winning_mark == player2.mark
         player2.mark
       end
     end
 
     def tie?
-      board.tie_game?
+      rules.tie_game?
     end
 
     private
 
-    def valid_move?(board, cell_number)
+    def valid_move?(cell_number)
       rules.valid_cell_number?(cell_number) && board.empty_cell?(cell_number)
     end
   end
