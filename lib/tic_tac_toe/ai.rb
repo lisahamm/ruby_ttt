@@ -1,8 +1,9 @@
 module TicTacToe
   class AI
 
-    def initialize(mark)
+    def initialize(mark, player_marks)
       @mark = mark
+      @player_marks = player_marks
     end
 
     def get_move(board)
@@ -14,10 +15,10 @@ module TicTacToe
     end
 
     private
-    attr_reader :mark
+    attr_reader :mark, :player_marks
 
-    def opponent(player)
-      player == 'X' ? 'O' : 'X'
+    def opponent(mark)
+      mark == player_marks[0] ? player_marks[1] : player_marks[0]
     end
 
     def score(board, rules, depth)
