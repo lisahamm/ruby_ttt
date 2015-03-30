@@ -2,11 +2,19 @@ module TicTacToe
   class Game
     attr_reader :player1, :player2, :current_player_mark, :board
 
-    def initialize(player1_mark, player2_mark, current_player_mark, board=nil)
+    def initialize(player1, player2, current_player_mark, board=nil)
       @board = board ||= Board.new
-      @player1 = player1_mark
-      @player2 = player2_mark
+      @player1 = player1
+      @player2 = player2
       @current_player_mark = current_player_mark
+    end
+
+    def player1_mark
+      player1.mark
+    end
+
+    def player2_mark
+      player2.mark
     end
 
     def board_to_array
@@ -28,7 +36,7 @@ module TicTacToe
     end
 
     def switch_turn
-      @current_player_mark = current_player_mark == 'X' ? 'O' : 'X'
+      @current_player_mark = current_player_mark == player1_mark ? player2_mark : player1_mark
     end
 
     def in_progress?
@@ -44,10 +52,10 @@ module TicTacToe
     end
 
     def get_winning_player
-      if board.get_winning_mark == player1
-        player1
-      elsif board.get_winning_mark == player2
-        player2
+      if board.get_winning_mark == player1.mark
+        player1.mark
+      elsif board.get_winning_mark == player2.mark
+        player2.mark
       end
     end
 

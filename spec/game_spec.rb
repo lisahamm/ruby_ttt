@@ -2,14 +2,14 @@ require "spec_helper"
 
 module TicTacToe
   describe Game do
-    let(:game) {Game.new('X', 'O', 'X')}
+    let(:game) {Game.new(Player.new('X'), Player.new('O'), 'X')}
 
     let(:game_in_play) do
       cells = ['O', 'O', nil,
                nil, 'X', nil,
                nil, nil, nil]
       board = Board.new(cells: cells)
-      Game.new('X', 'O', 'X', board)
+      Game.new(Player.new('X'), Player.new('O'), 'X', board)
     end
 
     let(:won_game) do
@@ -17,7 +17,7 @@ module TicTacToe
                'O', 'X', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new('X', 'O', 'X', board)
+      Game.new(Player.new('X'), Player.new('O'), 'X', board)
     end
 
     let(:tie_game) do
@@ -25,7 +25,7 @@ module TicTacToe
                'O', 'O', 'X',
                'X', 'O', 'X']
       board = Board.new(cells: cells)
-      Game.new('X', 'O', 'X', board)
+      Game.new(Player.new('X'), Player.new('O'), 'X', board)
     end
 
     describe "#board_to_array" do
