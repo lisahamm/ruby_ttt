@@ -8,7 +8,11 @@ module TicTacToe
     def initialize(options={})
       options = defaults.merge(options)
       @size = options[:size]
-      @cells = cellify(options[:cells] || Array.new(size*size) {nil})
+      @cell_data = options[:cells]
+    end
+
+    def cells
+      @cells ||= cellify(@cell_data || Array.new(size*size) {nil})
     end
 
     def get_cell(cell_number)
