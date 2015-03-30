@@ -38,11 +38,7 @@ module TicTacToe
     end
 
     def generate_ai_move
-      TicTacToe::AI.new(current_player_mark).get_move(board, rules)
-    end
-
-    def switch_turn
-      @current_player_mark = current_player_mark == player1_mark ? player2_mark : player1_mark
+      TicTacToe::AI.new(current_player_mark).get_move(board)
     end
 
     def in_progress?
@@ -51,10 +47,6 @@ module TicTacToe
 
     def over?
       rules.over?
-    end
-
-    def winner?
-      rules.winner?
     end
 
     def get_winning_player
@@ -71,8 +63,17 @@ module TicTacToe
 
     private
 
+    def switch_turn
+      @current_player_mark = current_player_mark == player1_mark ? player2_mark : player1_mark
+    end
+
     def valid_move?(cell_number)
       rules.valid_cell_number?(cell_number) && board.empty_cell?(cell_number)
     end
+
+    def winner?
+      rules.winner?
+    end
+
   end
 end

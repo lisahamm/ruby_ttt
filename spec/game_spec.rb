@@ -79,13 +79,6 @@ module TicTacToe
       end
     end
 
-    describe "#switch_turn" do
-      it "changes the current player mark from 'X' to 'O'" do
-        game.switch_turn
-        expect(game.current_player_mark).to eq 'O'
-      end
-    end
-
     describe "#in_progress?" do
       it "is true when in play" do
         expect(game_in_play.in_progress?).to eq true
@@ -111,20 +104,6 @@ module TicTacToe
 
       it "is true when tied" do
         expect(tie_game.over?).to eq true
-      end
-    end
-
-    describe "#winner?" do
-      it "is false when in play" do
-        expect(game_in_play.winner?).to eq false
-      end
-
-      it "is true when won" do
-        expect(won_game.winner?).to eq true
-      end
-
-      it "is false when tied" do
-        expect(tie_game.winner?).to eq false
       end
     end
 

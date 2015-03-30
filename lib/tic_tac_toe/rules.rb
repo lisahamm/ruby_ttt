@@ -10,10 +10,6 @@ module TicTacToe
       (0..(board.size ** 2 - 1)).include?(cell_number)
     end
 
-    def full?
-      board.cells.none? {|cell| cell.symbol.nil?}
-    end
-
     def over?
       winner? || tie_game?
     end
@@ -38,6 +34,8 @@ module TicTacToe
       nil
     end
 
+    private
+
     def winning_solutions
       [[0, 1, 2],
        [3, 4, 5],
@@ -50,6 +48,8 @@ module TicTacToe
       ]
     end
 
-
+    def full?
+      board.cells.none? {|cell| cell.symbol.nil?}
+    end
   end
 end
