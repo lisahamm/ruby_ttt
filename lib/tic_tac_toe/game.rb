@@ -38,7 +38,7 @@ module TicTacToe
     end
 
     def generate_ai_move
-      TicTacToe::AI.new(current_player_mark).get_move(board)
+      TicTacToe::AI.new(current_player_mark, rules.player_marks).get_move(board)
     end
 
     def in_progress?

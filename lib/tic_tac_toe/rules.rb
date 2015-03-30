@@ -34,6 +34,10 @@ module TicTacToe
       nil
     end
 
+    def player_marks
+      ["X", "O"]
+    end
+
     private
 
     def winning_solutions
