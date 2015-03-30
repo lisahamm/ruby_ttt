@@ -16,6 +16,8 @@ Ruby Tic Tac Toe gem
 
     $ gem install tic_tac_toe
 
+-Run your application using $ bundle exec
+
 ## Usage
 
   This gem contains the core logic of a tic tac toe game. It also provides an unbeatable AI component.
