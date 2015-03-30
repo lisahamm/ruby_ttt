@@ -1,6 +1,6 @@
 module TicTacToe
   class Game
-    attr_reader :player1, :player2, :current_player_mark, :board, :rules
+    attr_reader :player1, :player2, :current_player_mark, :board, :ai_mark, :rules
 
     def initialize(player1:, player2:, current_player_mark:, ai_mark:, board: nil)
       @board = board ||= Board.new
@@ -57,6 +57,10 @@ module TicTacToe
       end
     end
 
+    def winner?
+      rules.winner?
+    end
+
     def tie?
       rules.tie_game?
     end
@@ -70,10 +74,5 @@ module TicTacToe
     def valid_move?(cell_number)
       rules.valid_cell_number?(cell_number) && board.empty_cell?(cell_number)
     end
-
-    def winner?
-      rules.winner?
-    end
-
   end
 end
