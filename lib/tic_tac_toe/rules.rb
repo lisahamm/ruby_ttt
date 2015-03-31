@@ -2,8 +2,8 @@ module TicTacToe
   class Rules
     attr_reader :board
 
-    def initialize(board)
-      @board = board
+    def initialize(board=nil)
+      @board = board || Board.new
     end
 
     def valid_cell_number?(cell_number)
