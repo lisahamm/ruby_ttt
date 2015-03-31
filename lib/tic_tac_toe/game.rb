@@ -1,22 +1,22 @@
 module TicTacToe
   class Game
-    attr_reader :player1, :player2, :current_player_mark, :board, :ai_mark, :rules
+    attr_accessor :players, :current_player_mark, :board, :ai_mark
+    attr_reader :rules
 
-    def initialize(player1:, player2:, current_player_mark:, ai_mark:, board: nil)
+    def initialize(players:, current_player_mark:, ai_mark:, board: nil)
       @board = board ||= Board.new
-      @player1 = player1
-      @player2 = player2
+      @players = players
       @current_player_mark = current_player_mark
       @ai_mark = ai_mark
       @rules = Rules.new(board)
     end
 
     def player1_mark
-      player1.mark
+      players[0].mark
     end
 
     def player2_mark
-      player2.mark
+      players[1].mark
     end
 
     def board_to_array
@@ -24,7 +24,7 @@ module TicTacToe
     end
 
     def current_player
-      current_player_mark == player1_mark ? player1 : player2
+      current_player_mark == player1_mark ? players[0] : players[1]
     end
 
     def take_turn(cell_number)
@@ -50,10 +50,10 @@ module TicTacToe
     end
 
     def get_winning_player
-      if rules.get_winning_mark == player1.mark
-        player1.mark
-      elsif rules.get_winning_mark == player2.mark
-        player2.mark
+      if rules.get_winning_mark == player1_mark
+        player1_mark
+      elsif rules.get_winning_mark == player2_mark
+        player2_mark
       end
     end
 
@@ -63,6 +63,10 @@ module TicTacToe
 
     def tie?
       rules.tie_game?
+    end
+
+    def valid_player_marks
+      rules.player_marks
     end
 
     private
