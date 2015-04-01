@@ -2,8 +2,7 @@ require "spec_helper"
 
 module TicTacToe
   describe Game do
-    let(:game) {Game.new({player1: Player.new('X'),
-                          player2: Player.new('O'),
+    let(:game) {Game.new({player_marks: ['X', 'O'],
                           current_player_mark: 'X',
                           ai_mark: nil})}
 
@@ -11,8 +10,7 @@ module TicTacToe
       cells = ['O', 'O', nil,
                nil, 'X', nil,
                nil, nil, nil]
-      Game.new({player1: Player.new('X'),
-                player2: Player.new('O'),
+      Game.new({player_marks: ['X', 'O'],
                 current_player_mark: 'X',
                 ai_mark: nil,
                 board: Board.new(cells: cells)})
@@ -22,8 +20,7 @@ module TicTacToe
       cells = ['X', 'X', 'O',
                'O', 'X', 'X',
                'X', 'O', 'X']
-      Game.new({player1: Player.new('X'),
-                player2: Player.new('O'),
+      Game.new({player_marks: ['X', 'O'],
                 current_player_mark: 'X',
                 ai_mark: nil,
                 board: Board.new(cells: cells)})
@@ -33,8 +30,7 @@ module TicTacToe
       cells = ['X', 'X', 'O',
                'O', 'O', 'X',
                'X', 'O', 'X']
-      Game.new({player1: Player.new('X'),
-                player2: Player.new('O'),
+      Game.new({player_marks: ['X', 'O'],
                 current_player_mark: 'X',
                 ai_mark: nil,
                 board: Board.new(cells: cells)})
