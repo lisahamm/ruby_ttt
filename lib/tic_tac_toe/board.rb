@@ -1,18 +1,14 @@
 module TicTacToe
 
   class Board
-    attr_accessor :cells, :size
+    attr_reader :size, :cells
 
     BOARD_SIZE = 3
 
     def initialize(options={})
       options = defaults.merge(options)
       @size = options[:size]
-      @cell_data = options[:cells]
-    end
-
-    def cells
-      @cells ||= cellify(@cell_data || Array.new(size*size) {nil})
+      @cells = cellify(options[:cells] || Array.new(size*size) {nil})
     end
 
     def get_cell(cell_number)
