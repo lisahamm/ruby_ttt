@@ -47,6 +47,7 @@ module TicTacToe
     describe "#take_turn" do
       context "when cell number is valid" do
         it "adds the current player's mark to specified cell" do
+          expect(game.board.get_cell(0)).to eq nil
           player_mark = game.current_player_mark
           game.take_turn(0)
           expect(game.board.get_cell(0)).to eq player_mark
